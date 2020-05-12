@@ -6,6 +6,7 @@
 pip install whitenoise
 pip install gunicorn
 pip install dj-database-url
+pip install django-cors-headers
 ```
 Create two files in the project root.
 ```
@@ -28,12 +29,16 @@ pip freeze -> requirements.txt
 ```
 You should see something like this:
 ```
+asgiref==version
 dj-database-url==version
 Django==version
+django-cors-headers==version
+django-heroku==version
+djangorestframework==version
 gunicorn==version
 psycopg2==version
-psycopg2-binary==version
 pytz==version
+sqlparse==version
 whitenoise==version
 ```
 
@@ -108,7 +113,7 @@ db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 ```
 
-## step 06: deployment
+## step 06: deployment settings and cors headers
 Alright, enough configuration. Let’s get the deployment started. First, let's initialize our gitrepo in the In your project root
 ```
 git init
@@ -173,6 +178,31 @@ ENV/
 # vscode
 .vscode/
 ```
+
+Now let's add the django cors header to the installed apps
+```python
+INSTALLED_APPS = [
+    ...,
+    'django.contrib.staticfiles',
+    'corsheaders',
+    ...
+]
+```
+You will also need to add a middleware class to listen in on responses:
+```python
+MIDDLEWARE = [  # Or MIDDLEWARE_CLASSES on Django < 1.10
+    ...
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    ...
+]
+```
+Add ```CORS_ORIGIN_ALLOW_ALL``` before the ```ROOT_URLCONF```
+```
+CORS_ORIGIN_ALLOW_ALL = True
+ROOT_URLCONF = 'myproject.urls'
+```
+
 
 ## step 07: sign up on Heroku and install the Heroku Toolbeit
 Heroku actually uses a cli to control their deployments. So let’s install it.
