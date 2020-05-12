@@ -59,8 +59,8 @@ MIDDLEWARE = [
   'django.middleware.security.SecurityMiddleware',
   'whitenoise.middleware.WhiteNoiseMiddleware',
   # ...
-]```
-
+]
+```
 
 ## step 03: edit Heroku required files
 Edit the Procfile file in the project root with the following content
@@ -93,10 +93,8 @@ db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 ```
 
-## step 03
-
 ## step 02: deployment
-Alright, enough configuration. Let’s get the deployment started. First, let's initialize our git repo
+Alright, enough configuration. Let’s get the deployment started. First, let's initialize our gitrepo
 ```
 git init
 ```
