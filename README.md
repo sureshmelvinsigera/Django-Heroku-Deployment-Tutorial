@@ -200,7 +200,12 @@ This will run the Procfile and consequently you can debug any errors if any on y
 ```
 Now visit http://0.0.0.0:5000 and see if you can see the Django applicartion.
 
-## step 09: deploy to Heroku
+## step 09: commit and collect static
+Sometimes, you may not want Heroku to run collectstatic on your behalf. You can disable the collectstatic build step with the DISABLE_COLLECTSTATIC configuration:
+```
+heroku config:set DISABLE_COLLECTSTATIC=1
+```
+## step 10:
 Finally, we are now ready to deploy our application. Follow these steps to successfully deploy to Heroku.
 Commit all changes to git.
 ```
