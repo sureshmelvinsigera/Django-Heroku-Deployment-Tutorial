@@ -26,6 +26,20 @@ Here i my current directory structure
 └── runtime.txt
 ```
 
+## step 02: edit Heroku required files
+Edit the Procfile file in the project root with the following content
+```
+web: gunicorn <project name>.wsgi --log-file -
+```
+Edit the runtime.txt file in the project root with the following content
+```
+python-3.6.8
+```
+If you like more information about Heroku supported runtime enviroments please visit: https://devcenter.heroku.com/articles/python-support#supported-runtimes
+
+
+
+
 
 
 ## step 02: deployment
