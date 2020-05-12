@@ -198,9 +198,22 @@ This will run the Procfile and consequently you can debug any errors if any on y
 4:30:47 PM web.1 |  [2020-05-12 16:30:46 -0400] [4314] [INFO] Using worker: sync
 4:30:47 PM web.1 |  [2020-05-12 16:30:46 -0400] [4317] [INFO] Booting worker with pid: 4317
 ```
-Now visit http://0.0.0.0:5000 and see if you can see the Django applicartion.
+Now visit http://0.0.0.0:5000 and see if you can see the Django application.
 
-## step 09: commit and collect static
+## step 09: db migration, commit and collect static
+Let's run the db migrations
+```
+heroku run python manage.py migrate
+heroku run python manage.py makemigrations
+```
+```
+heroku run python manage.py createsuperuser
+```
+```
+heroku run python manage.py migrate
+```
+
+
 Sometimes, you may not want Heroku to run collectstatic on your behalf. You can disable the collectstatic build step with the DISABLE_COLLECTSTATIC configuration:
 ```
 heroku config:set DISABLE_COLLECTSTATIC=1
