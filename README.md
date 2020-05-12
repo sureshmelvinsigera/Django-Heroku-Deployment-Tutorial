@@ -87,14 +87,29 @@ To set up the database, we will add the following code in ```settings.py```:
 ```python
 import os
 import dj_database_url
-
+```
+After the databases setting add the following 
+```python
+DATABASES = {
+    'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'sample123',
+            'USER': 'suresh',
+            'PASSWORD': '',
+            'HOST': 'localhost',
+            'PORT': '',
+        }
+}
+# dj-database-url settings
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
 # Update database configuration with $DATABASE_URL.
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 ```
 
-## step 02: deployment
-Alright, enough configuration. Let’s get the deployment started. First, let's initialize our gitrepo
+## step 06: deployment
+Alright, enough configuration. Let’s get the deployment started. First, let's initialize our gitrepo in the In your project root
 ```
 git init
 ```
@@ -104,6 +119,8 @@ git status
 ```
 Some of these files we don’t want to track in git. Why? Well, some of them can be created each time you run the program, so it is a waste of space and distracting to check them into git. To handle this, we create a file called .gitignore (like git ignore, but all one word) in the base directory of our project. Then, we write the file or folder names or paths that we want to exclude from git.
 ```
+git add .
+git commit -m "Initial commit"
 touch .gitignore
 ```
 add the following to the .gitignore file
@@ -157,9 +174,7 @@ ENV/
 .vscode/
 ```
 
-
-
-## step 02: sign up on Heroku and install the Heroku Toolbeit
+## step 07: sign up on Heroku and install the Heroku Toolbeit
 Heroku actually uses a cli to control their deployments. So let’s install it.
 ```
 brew install heroku
@@ -169,6 +184,8 @@ Now, we need to “log in” to the local cli. This command will ask for your cr
 ```
 heroku login
 heroku create <app_name>
+git push heroku master
 ```
+
 
 
