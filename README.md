@@ -184,8 +184,16 @@ Now, we need to “log in” to the local cli. This command will ask for your cr
 ```
 heroku login
 heroku create <app_name>
-git push heroku master
 ```
+
+## step 08: building the app locally
+Run the following command to test Heroku deployment locally. Make sure you're the root of the project.
+```
+heroku local web
+```
+This will run the Procfile and consequently you can debug any errors if any on your local machine.
+
+
 
 
 
