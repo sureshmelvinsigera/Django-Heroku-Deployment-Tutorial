@@ -37,7 +37,7 @@ Here is my current directory structure
 └── runtime.txt
 ```
 
-## setep 03: set Up the static assets
+## step 03: set up the static assets
 Configure the STATIC-related parameters in settings.py:
 ```python
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -47,7 +47,7 @@ STATICFILES_DIRS = [
 ]
 ```
 
-## step 02: edit Heroku required files
+## step 04: edit Heroku required files
 Edit the Procfile file in the project root with the following content
 ```
 web: gunicorn <project_name>.wsgi --log-file -
@@ -59,7 +59,17 @@ python-3.6.8
 If you like more information about Heroku supported runtime enviroments please visit: https://devcenter.heroku.com/articles/python-support#supported-runtimes
 
 
-
+## step 05: database
+The following commands create postgresql database on heroku for you app and fetch its url.
+```
+heroku addons:create heroku-postgresql:hobby-dev
+heroku config -s | grep DATABASE_URL
+```
+You can also run heroku ```pg:info``` to get details of your database on heroku. Add-on: will give you ```nameOfHerokuDB```.
+Now lets push local database to herokuDB
+```
+push local database:PGUSER=postgres PGPASSWORD=password heroku pg:push postgres://name_of_host/name_of_local_database nameOfHerokuDB
+```
 
 
 
