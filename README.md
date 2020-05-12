@@ -42,7 +42,7 @@ Edit the Procfile file in the project root with the following content
 ```
 web: gunicorn <project_name>.wsgi --log-file -
 ```
-Edit the runtime.txt file in the project root with the following content
+Edit the runtime.txt file in the project root with the following content, For example, I'll be using Python 3.6.8
 ```
 python-3.6.8
 ```
