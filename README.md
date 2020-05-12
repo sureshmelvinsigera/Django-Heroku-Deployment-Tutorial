@@ -15,6 +15,17 @@ Let's freeze the requirements.txt file
 ```
 pip freeze -> requirements.txt
 ```
+You should see something like this:
+```
+dj-database-url==version
+Django==version
+gunicorn==version
+psycopg2==version
+psycopg2-binary==version
+pytz==version
+whitenoise==version
+```
+
 Here is my current directory structure
 ```
 .
