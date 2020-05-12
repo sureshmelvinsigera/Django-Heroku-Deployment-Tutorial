@@ -62,7 +62,7 @@ MIDDLEWARE = [
 ]
 ```
 
-## step 03: edit Heroku required files
+## step 04: edit Heroku required files
 Edit the Procfile file in the project root with the following content
 ```
 web: gunicorn <project_name>.wsgi --log-file -
