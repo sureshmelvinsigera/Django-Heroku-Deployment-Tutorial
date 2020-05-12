@@ -191,8 +191,24 @@ Run the following command to test Heroku deployment locally. Make sure you're th
 ```
 heroku local web
 ```
-This will run the Procfile and consequently you can debug any errors if any on your local machine.
+This will run the Procfile and consequently you can debug any errors if any on your local machine. You should see an output similar to this.
+```
+4:30:46 PM web.1 |  [2020-05-12 16:30:46 -0400] [4314] [INFO] Starting gunicorn 20.0.4
+4:30:47 PM web.1 |  [2020-05-12 16:30:46 -0400] [4314] [INFO] Listening at: http://0.0.0.0:5000 (4314)
+4:30:47 PM web.1 |  [2020-05-12 16:30:46 -0400] [4314] [INFO] Using worker: sync
+4:30:47 PM web.1 |  [2020-05-12 16:30:46 -0400] [4317] [INFO] Booting worker with pid: 4317
+```
+Now visit http://0.0.0.0:5000 and see if you can see the Django applicartion.
 
+## step 09: deploy to Heroku
+Finally, we are now ready to deploy our application. Follow these steps to successfully deploy to Heroku.
+Commit all changes to git.
+```
+git add .
+git commit -m "deployment ready"
+git push heroku master
+heroku open
+```
 
 
 
