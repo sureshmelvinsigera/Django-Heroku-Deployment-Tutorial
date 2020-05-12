@@ -72,7 +72,7 @@ We use the dj-database-url library to extract database configurations from the e
 For Django applications, a Heroku Postgres hobby-dev database is automatically provisioned. This populates the DATABASE_URL environment variable.
 
 To set up the database, we will add the following code in ```settings.py```:
-```
+```python
 import os
 import dj_database_url
 
