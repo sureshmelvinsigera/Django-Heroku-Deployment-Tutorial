@@ -7,6 +7,7 @@ pip install whitenoise
 pip install gunicorn
 pip install dj-database-url
 pip install django-cors-headers
+pip install psycopg2
 ```
 Create two files in the project root.
 ```
