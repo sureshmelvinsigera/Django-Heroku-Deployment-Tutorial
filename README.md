@@ -12,6 +12,16 @@ Create two files in the project root.
 touch Procfile
 runtime.txt
 ```
+Here is my current directory structure
+```
+.
+├── Procfile
+├── apps
+├── manage.py
+├── myproject
+├── requirements.txt
+└── runtime.txt
+```
 Let's freeze the requirements.txt file
 ```
 pip freeze -> requirements.txt
@@ -27,22 +37,10 @@ pytz==version
 whitenoise==version
 ```
 
-Here is my current directory structure
-```
-.
-├── Procfile
-├── apps
-├── manage.py
-├── myproject
-├── requirements.txt
-└── runtime.txt
-```
-
-## step 03: static assets management and serving
+## step 02: static assets management and serving
 By default, Django does not serve static files in production. Hence, we will use WhiteNoise for serving static assets in production. So let's configure the STATIC-related parameters in settings.py:
 ```python
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
@@ -50,7 +48,21 @@ STATICFILES_DIRS = (
 )
 ```
 
-## step 04: edit Heroku required files
+## step 03: enable whitenoise
+If you’re familiar with Django you’ll know what to do. If you’re just getting started with a new Django project then you’ll need add the following to the bottom of your settings.py file:
+```python
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+```
+Edit your ```settings.py``` file and add WhiteNoise to the MIDDLEWARE list. The WhiteNoise middleware should be placed directly after the Django SecurityMiddleware (if you are using it) and before all other middleware:
+```python
+MIDDLEWARE = [
+  'django.middleware.security.SecurityMiddleware',
+  'whitenoise.middleware.WhiteNoiseMiddleware',
+  # ...
+]```
+
+
+## step 03: edit Heroku required files
 Edit the Procfile file in the project root with the following content
 ```
 web: gunicorn <project_name>.wsgi --log-file -
@@ -81,6 +93,7 @@ db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 ```
 
+## step 03
 
 ## step 02: deployment
 Alright, enough configuration. Let’s get the deployment started. First, let's initialize our git repo
