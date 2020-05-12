@@ -5,6 +5,7 @@
 ```
 pip install whitenoise
 pip install gunicorn
+pip install dj-database-url
 ```
 Create two files in the project root.
 ```
@@ -37,14 +38,16 @@ Here is my current directory structure
 └── runtime.txt
 ```
 
-## step 03: set up the static assets
-Configure the STATIC-related parameters in settings.py:
+## step 03: static assets management and serving
+By default, Django does not serve static files in production. Hence, we will use WhiteNoise for serving static assets in production. So let's configure the STATIC-related parameters in settings.py:
 ```python
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
-]
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
 ```
 
 ## step 04: edit Heroku required files
@@ -59,18 +62,24 @@ python-3.6.8
 If you like more information about Heroku supported runtime enviroments please visit: https://devcenter.heroku.com/articles/python-support#supported-runtimes
 
 
-## step 05: database
+## step 05: database configuration
 The following commands create postgresql database on heroku for you app and fetch its url.
 ```
 heroku addons:create heroku-postgresql:hobby-dev
 heroku config -s | grep DATABASE_URL
 ```
-You can also run heroku ```pg:info``` to get details of your database on heroku. Add-on: will give you ```nameOfHerokuDB```.
-Now lets push local database to herokuDB
-```
-push local database:PGUSER=postgres PGPASSWORD=password heroku pg:push postgres://name_of_host/name_of_local_database nameOfHerokuDB
-```
+We use the dj-database-url library to extract database configurations from the environment.
+For Django applications, a Heroku Postgres hobby-dev database is automatically provisioned. This populates the DATABASE_URL environment variable.
 
+To set up the database, we will add the following code in ```settings.py```:
+```
+import os
+import dj_database_url
+
+# Update database configuration with $DATABASE_URL.
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
+```
 
 
 ## step 02: deployment
