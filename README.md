@@ -15,7 +15,7 @@ Let's freeze the requirements.txt file
 ```
 pip freeze -> requirements.txt
 ```
-Here i my current directory structure
+Here is my current directory structure
 ```
 .
 ├── Procfile
@@ -29,7 +29,7 @@ Here i my current directory structure
 ## step 02: edit Heroku required files
 Edit the Procfile file in the project root with the following content
 ```
-web: gunicorn <project name>.wsgi --log-file -
+web: gunicorn <project_name>.wsgi --log-file -
 ```
 Edit the runtime.txt file in the project root with the following content
 ```
@@ -104,9 +104,6 @@ ENV/
 
 # vscode
 .vscode/
-
-# cover
-cover/
 ```
 
 
