@@ -11,6 +11,22 @@ Create two files in the project root.
 touch Procfile
 runtime.txt
 ```
+Let's freeze the requirements.txt file
+```
+pip freeze -> requirements.txt
+```
+Here i my current directory structure
+```
+.
+├── Procfile
+├── apps
+├── manage.py
+├── myproject
+├── requirements.txt
+└── runtime.txt
+```
+
+
 
 ## step 02: deployment
 Alright, enough configuration. Let’s get the deployment started. First, let's initialize our git repo
