@@ -37,6 +37,16 @@ Here is my current directory structure
 └── runtime.txt
 ```
 
+## setep 03: set Up the static assets
+Configure the STATIC-related parameters in settings.py:
+```python
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
+]
+```
+
 ## step 02: edit Heroku required files
 Edit the Procfile file in the project root with the following content
 ```
