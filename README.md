@@ -2,7 +2,7 @@
 
 In this tutorial, you will learn how to deploy a Django API to Heroku. Here’s what you need to do to go from zero to deployed on Heroku with a Django + Postgres application from the command line.
 
-(watch the full video)[https://youtu.be/Nhl_-1gvQTk]
+[watch the full video](https://youtu.be/Nhl_-1gvQTk)
 
 ## step 01: requirements
 ```
