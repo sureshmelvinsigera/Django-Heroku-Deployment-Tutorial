@@ -241,7 +241,7 @@ heroku run python manage.py createsuperuser
 ```
 heroku run python manage.py migrate
 ```
-Sometimes, you may not want Heroku to run collectstatic on your behalf. You can disable the collectstatic build step with the DISABLE_COLLECTSTATIC configuration:
+Sometimes, you may not want Heroku to run collectstatic on your behalf. You can disable the collectstatic build step with the ```DISABLE_COLLECTSTATIC``` configuration:
 ```
 heroku config:set DISABLE_COLLECTSTATIC=1
 ```
