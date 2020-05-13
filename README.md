@@ -44,7 +44,7 @@ whitenoise==version
 ```
 
 ## step 02: static assets management and serving
-By default, Django does not serve static files in production. Hence, we will use WhiteNoise for serving static assets in production. So let's configure the STATIC-related parameters in settings.py:
+By default, Django does not serve static files in production. Hence, we will use WhiteNoise for serving static assets in production. So let's configure the STATIC-related parameters in settings.py, make sure to put these configurations are at the end of settings.py
 ```python
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_URL = '/static/'
@@ -53,12 +53,12 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
 ```
-
-## step 03: enable whitenoise
 If you’re familiar with Django you’ll know what to do. If you’re just getting started with a new Django project then you’ll need add the following to the bottom of your settings.py file:
 ```python
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 ```
+
+## step 03: enable whitenoise
 Edit your ```settings.py``` file and add WhiteNoise to the MIDDLEWARE list. The WhiteNoise middleware should be placed directly after the Django SecurityMiddleware (if you are using it) and before all other middleware:
 ```python
 MIDDLEWARE = [
@@ -243,8 +243,6 @@ heroku run python manage.py createsuperuser
 ```
 heroku run python manage.py migrate
 ```
-
-
 Sometimes, you may not want Heroku to run collectstatic on your behalf. You can disable the collectstatic build step with the DISABLE_COLLECTSTATIC configuration:
 ```
 heroku config:set DISABLE_COLLECTSTATIC=1
@@ -258,7 +256,5 @@ git commit -m "deployment ready"
 git push heroku master
 heroku open
 ```
-
-
 
 
