@@ -84,11 +84,6 @@ If you like more information about Heroku supported runtime enviroments please v
 
 
 ## step 05: database configuration
-The following commands create postgresql database on heroku for you app and fetch its url.
-```
-heroku addons:create heroku-postgresql:hobby-dev
-heroku config -s | grep DATABASE_URL
-```
 We use the ```dj-database-url``` library to extract database configurations from the environment.
 For Django applications, a Heroku Postgres hobby-dev database is automatically provisioned. This populates the ```DATABASE_URL``` environment variable.
 
@@ -216,6 +211,12 @@ Now, we need to “log in” to the local cli. This command will ask for your cr
 ```
 heroku login
 heroku create <app_name>
+```
+
+Now let's setup the databases. The following commands create postgresql database on heroku for you app and fetch its url.
+```
+heroku addons:create heroku-postgresql:hobby-dev
+heroku config -s | grep DATABASE_URL
 ```
 
 ## step 08: building the app locally
