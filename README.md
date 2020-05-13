@@ -199,7 +199,7 @@ MIDDLEWARE = [  # Or MIDDLEWARE_CLASSES on Django < 1.10
 ]
 ```
 Add ```CORS_ORIGIN_ALLOW_ALL``` before the ```ROOT_URLCONF```
-```
+```python
 CORS_ORIGIN_ALLOW_ALL = True
 ROOT_URLCONF = 'myproject.urls'
 ```
